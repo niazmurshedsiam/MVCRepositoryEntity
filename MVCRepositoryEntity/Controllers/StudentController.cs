@@ -1,5 +1,6 @@
 ﻿using MVCRepositoryEntity.Interface;
 using MVCRepositoryEntity.Manager;
+using MVCRepositoryEntity.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,29 @@ namespace MVCRepositoryEntity.Controllers
         {
             var students = _iStudent.GetAll();
             return View(students);
+        }
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isActive = _iStudent.Add(student);
+                if (isActive)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Msg = "Data Don't Save";
+                }
+
+            }
+            return View();
         }
     }
 }

@@ -10,5 +10,7 @@ namespace MVCRepositoryEntity.Interface
 {
     interface IStudentManager:ICommonManager<Student>
     {
+        bool IsRegistrationNo(string RegNo);
+
     }
 }

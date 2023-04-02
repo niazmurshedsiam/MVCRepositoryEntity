@@ -28,6 +28,11 @@ namespace MVCRepositoryEntity.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (_iStudent.IsRegistrationNo(student.strRegNo))
+                {
+                    ViewBag.Msg = "Registration Number Already exists";
+                }
+                
                 bool isActive = _iStudent.Add(student);
                 if (isActive)
                 {

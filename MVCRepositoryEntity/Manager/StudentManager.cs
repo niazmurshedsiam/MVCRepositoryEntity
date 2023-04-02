@@ -16,5 +16,20 @@ namespace MVCRepositoryEntity.Manager
         {
 
         }
+
+        public bool IsRegistrationNo(string RegNo)
+        {
+            var data = GetFirstOrDefault(x => x.strRegNo.ToLower() == RegNo.ToLower());
+            if (data != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        
     }
 }

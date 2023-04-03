@@ -46,5 +46,29 @@ namespace MVCRepositoryEntity.Controllers
             }
             return View();
         }
+
+        public ActionResult Edit(int id)
+        {
+            var data = _iStudent.GetFirstOrDefault(x => x.intId == id);
+            if (data == null)
+            {
+                return HttpNotFound();
+            }
+            return View(data);
+        }
+        [HttpPost]
+        public ActionResult Edit(Student student)
+        {
+            if (ModelState.IsValid)
+            {
+                bool isUpdate = _iStudent.Update(student);
+                if (isUpdate)
+                {
+                    return RedirectToAction("Index");
+                }
+
+            }
+            return View(); 
+        }
     }
 }

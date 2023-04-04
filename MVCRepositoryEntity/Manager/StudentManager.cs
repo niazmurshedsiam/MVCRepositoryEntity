@@ -17,6 +17,11 @@ namespace MVCRepositoryEntity.Manager
 
         }
 
+        public Student GetById(int id)
+        {
+            return GetFirstOrDefault(c => c.intId == id);
+        }
+
         public bool IsRegistrationNo(string RegNo)
         {
             var data = GetFirstOrDefault(x => x.strRegNo.ToLower() == RegNo.ToLower());

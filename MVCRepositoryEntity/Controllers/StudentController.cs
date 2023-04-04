@@ -49,7 +49,7 @@ namespace MVCRepositoryEntity.Controllers
 
         public ActionResult Edit(int id)
         {
-            var data = _iStudent.GetFirstOrDefault(x => x.intId == id);
+            var data = _iStudent.GetById(id);
             if (data == null)
             {
                 return HttpNotFound();
@@ -73,7 +73,7 @@ namespace MVCRepositoryEntity.Controllers
 
         public ActionResult Details(int id)
         {
-            var data = _iStudent.GetFirstOrDefault(c => c.intId == id);
+            var data = _iStudent.GetById(id);
             if(data == null)
             {
                 return HttpNotFound();

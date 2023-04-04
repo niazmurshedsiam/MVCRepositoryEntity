@@ -70,5 +70,15 @@ namespace MVCRepositoryEntity.Controllers
             }
             return View(); 
         }
+
+        public ActionResult Details(int id)
+        {
+            var data = _iStudent.GetFirstOrDefault(c => c.intId == id);
+            if(data == null)
+            {
+                return HttpNotFound();
+            }
+            return View(data);
+        }
     }
 }

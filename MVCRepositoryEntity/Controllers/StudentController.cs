@@ -32,17 +32,18 @@ namespace MVCRepositoryEntity.Controllers
                 {
                     ViewBag.Msg = "Registration Number Already exists";
                 }
-                
-                bool isActive = _iStudent.Add(student);
-                if (isActive)
-                {
-                    return RedirectToAction("Index");
-                }
                 else
                 {
-                    ViewBag.Msg = "Data Don't Save";
+                    bool isActive = _iStudent.Add(student);
+                    if (isActive)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ViewBag.Msg = "Data Don't Save";
+                    }
                 }
-
             }
             return View();
         }
@@ -79,6 +80,28 @@ namespace MVCRepositoryEntity.Controllers
                 return HttpNotFound();
             }
             return View(data);
+        }
+
+        public ActionResult Delete(int id)
+        {
+            var data = _iStudent.GetById(id);
+            if(data == null)
+            {
+                return HttpNotFound();
+            }
+            return View(data);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Student student)
+        {
+              bool isDelete = _iStudent.Delete(student);
+                if (isDelete)
+                {
+                    return RedirectToAction("Index");
+                }
+            
+            return View(student);
         }
     }
 }
